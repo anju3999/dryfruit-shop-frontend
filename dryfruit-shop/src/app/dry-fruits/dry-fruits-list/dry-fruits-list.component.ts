@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ProductService } from '../../core/services/product.service';
 
 @Component({
   selector: 'app-dry-fruits-list',
@@ -9,4 +10,14 @@ import { Component } from '@angular/core';
 })
 export class DryFruitsListComponent {
 
+
+  products: any[] = [];
+
+  constructor(private productService: ProductService) {}
+
+  ngOnInit(): void {
+    this.productService.getProducts().subscribe(data => {
+      this.products = data;
+    });
+  }
 }
